@@ -1,0 +1,448 @@
+---
+---
+
+:root {
+  /* -- Light Mode Colors (Default) -- */
+  --body-background: #ffffff; /* White background */
+  --text-color: #333333;      /* Dark grey text */
+  --heading-color: #1a1a1a;   /* Even darker grey for headings */
+  --link-color: #007bff;      /* Standard blue link */
+  --link-hover-color: #0056b3;/* Darker blue on hover */
+  --primary-white: #000;      /* Becomes black for elements that were white (like header text) */
+  --border-color: #cccccc;   /* Light grey border */
+  --footer-text-color: #555555;/* Mid-grey footer text */
+  --code-bg: #f8f8f8;        /* Light code block background */
+  --code-text: #c7254e;      /* Common red/pink for code text */
+  --inline-code-bg: #e9e9e9; /* Lighter inline code background */
+  --code-border: #bbbbbb;    // Light code border
+}
+
+body.dark-mode {
+  --body-background: #1a2035;
+  --text-color: #f0f0f0;
+  --heading-color: #e0e0e0;
+  --link-color: #88c0d0;
+  --link-hover-color: #a3daeb;
+  --primary-white: #fff; /* For elements that should be white in dark mode */
+  --border-color: #333;
+  --footer-text-color: #666;
+  --code-bg: #131728;
+  --code-text: #b0c4de;
+  --inline-code-bg: #2a304e;
+  --code-border: #333; // Add explicitly for consistency
+}
+
+// Import the original Minima theme's styles first
+@import "minima";
+
+// Your custom styles will go below this line
+
+/* --- Base Body Styling (Black Background) --- */
+body {
+    background-color: var(--body-background); /* #1a2035; 000 Pure black background, changed to dark blue via #2c334f */
+    color: var(--text-color); /*#f0f0f0; Light grey for default text, for readability on black */
+    font-family: 'Inter', sans-serif; /* We imported this font */
+    line-height: 1.6;       /* Good for readability */
+    margin: 0;              /* Remove default browser margin */
+    padding: 0;             /* Remove default browser padding */
+    -webkit-font-smoothing: antialiased; /* Smoother text rendering for macOS */
+    -moz-osx-font-smoothing: grayscale; /* Smoother text rendering for macOS */
+    font-size: 1.4em;
+}
+
+/* --- Paragraph Styling (Add this new section) --- */
+p {
+    margin-bottom: 1.25em; /* This will add space below each paragraph */
+                           /* Adjust 1.5em to a higher value like 2em or a pixel value like 20px/30px if you need more space */
+}
+
+/* --- Main Content Area (Lighter Block on Black Background) --- */
+.page-content .wrapper {
+    max-width: 75%; /* Adjust as needed. */
+    background-color: var(--body-background); /* #1a2035; same dark blue for body, changed from #1a1a1a A slightly lighter black for the content block */
+    padding: 10px; /* Padding inside the content block */
+    border-radius: 8px; /* Slightly rounded corners for the content block */
+}
+
+/* --- Headers (adjust colors for dark theme and apply Montserrat font) --- */
+h1, h2, h3, h4, h5, h6 {
+    font-family: 'Manrope', sans-serif; /* Apply Montserrat for headings */
+    color: var(--heading-color); /* #e0e0e0; A light grey for headings */
+    margin-top: 1.5em;
+    margin-bottom: 0.8em;
+    font-weight: 700; /* Make headings bold by default */
+}
+
+h1 { font-size: 4.8em; }
+h2 { font-size: 2.2em; }
+h3 { font-size: 1.8em; }
+/* Adjust sizes as desired */
+
+/* Adjustments for spacing on content pages */
+.page-content .wrapper h2:first-child {
+    margin-top: 0;      /* Remove the top margin of the first H2 */
+    padding-top: 0;     /* Ensure no padding at the top of the H2 itself */
+}
+
+.page-heading {
+    font-size: 2.5em; /* Start with this, adjust as needed. */
+                     /* You might want to copy other properties like font-family or color from your general h1 rule if you notice them changing. */
+    // font-family: 'Manrope', sans-serif; // Add if it loses its font
+    // color: #e0e0e0;                     // Add if it loses its color
+}
+
+/* --- Links (adjust colors for dark theme) --- */
+a {
+    color: var(--link-color); /* #88c0d0; A light blue/cyan for links, stands out well on dark */
+    text-decoration: none; /* Remove underline by default */
+    transition: color 0.3s ease; /* Smooth transition on hover */
+}
+
+a:hover {
+    color: var(--link-hover-color); /* #a3daeb; Lighter shade on hover */
+    text-decoration: underline; /* Add underline on hover for clarity */
+}
+
+/* --- Header Styling Desktop --- */
+header {
+    background-color: var(--body-background); /* #1a2035; Matches body background */
+    color: var(--body-background);  /* #1a2035; */
+    padding: 1.5rem 0; /* More padding top/bottom */
+    text-align: center;
+    border-bottom: 0.5px solid var(--border-color); /* solid #333; Subtle line at bottom of header */
+}
+
+.site-header {
+    display: flex; /* Make the header a flex container on desktop */
+    align-items: center; /* Vertically align items in the center */
+    justify-content: space-between; /* Push site-title to left, nav to right */
+    position: relative; /* Make it a positioning context for absolute children (like mobile icon) */
+}
+
+/* --- Header Wrapper (Flexbox for Layout) --- */
+.site-header .wrapper {
+    display: flex;             /* Make the wrapper a flex container */
+    align-items: center;       /* Vertically align items in the center */
+    justify-content: space-between; /* Push site-title to left, nav to right */
+    // Minima might have $spacing-unit, if you get an error here, replace it with a value like 15px or remove.
+    padding-left: 15px; // Default Jekyll $spacing-unit / 2
+    padding-right: 15px; // Default Jekyll $spacing-unit / 2
+    max-width: 75%; /* Match your main content width for consistency */
+    margin: 0 auto; /* Center the header content */
+    width: 100%; /* Ensure wrapper takes full width of its parent flex container */
+}
+
+/* --- Layout Adjustments for Header Navigation --- */
+    .site-nav .trigger {
+        display: flex;
+        flex-direction: row;    /* Arrange items in a row */
+        align-items: center;    /* Vertically align items in the center */
+        gap: 15px;              /* Add consistent spacing between links and button */
+        flex-wrap: wrap; 
+        width: 100%;
+        text-align: right;
+    }
+    .site-nav input[type="checkbox"]:checked ~ .trigger {
+        display: block;
+    }
+
+/* --- Theme Toggle Styling --- */
+#theme-toggle {
+    background: none; /* No background */
+    border: none;     /* No border */
+    cursor: pointer;  /* Indicate it's clickable */
+    padding: 5px;     /* Small padding around the icon */
+    float: right;
+    margin-left: 15px; /* Adjust spacing from your navigation links */
+    margin-right: 31.875px;
+    color: var(--primary-white); /* Use the theme variable for icon color */
+    display: flex;    /* Use flexbox to easily center the SVG icon */
+    justify-content: center;
+    transition: color 0.3s ease; /* Smooth transition for color changes */
+    order: 1; 
+
+    &:hover {
+        color: var(--link-color); /* Changes color on hover, matching your links */
+    }
+
+    svg {
+        width: 24px;  /* Set icon size */
+        height: 24px; /* Set icon size */
+    }
+
+    /* By default (light mode), show the sun icon and hide the moon icon */
+    .sun-icon {
+        display: none;
+    }
+    .moon-icon {
+        display: block;
+    }
+}
+
+/* Styles for when dark mode is active (body has the .light-mode class) */
+body.dark-mode #theme-toggle {
+    color: var(--primary-white); /* In light mode, --primary-white becomes black */
+
+    &:hover {
+        color: var(--link-hover-color);
+    }
+
+    /* In dark mode, hide the sun icon and show the moon icon */
+    .sun-icon {
+        display: block;
+    }
+    .moon-icon {
+        display: none;
+    }
+}
+
+/* --- Site Title Styling --- */
+.site-header .site-title {
+    font-size: 1.8rem;
+    line-height: 56px;
+    letter-spacing: -1px;
+    margin-bottom: 0;
+    float: none;
+    text-align: left;
+    color: var(--primary-white); /* #fff;*/
+    font-family: 'Manrope', sans-serif;
+    font-weight: 700;
+    text-decoration: none;
+}
+
+/* --- Main Navigation Container (Push to Right - Desktop) --- */
+.site-header .site-nav {
+    display: flex;
+    align-items: center;
+    margin-left: auto; /* This pushes the nav to the right */
+}
+
+/* --- Individual Navigation Link Styling --- */
+.site-header .page-link {
+    color: var(--primary-white); /* #fff; */
+    font-family: 'Manrope', sans-serif;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    font-weight: 600;
+    text-decoration: none;
+    padding: 0 15px;
+    transition: color 0.3s ease;
+    margin-right: 31.875 px !important;
+}
+
+.site-header .page-link:hover {
+    color: var(--link-color);
+}
+
+/* --- Mobile Menu Icon Hiding (for desktop view) --- */
+.site-nav label[for="nav-trigger"], /* Target the label containing the icon */
+    .site-nav .menu-icon /* Target the icon's span */
+    {
+        display: none; /* Hides the hamburger icon by default on larger screens */
+    }
+
+/* --- Footer Styling --- */
+footer {
+    text-align: center; /* KEEP this if you want other things like copyright to be centered, but we'll override for columns */
+    background-color: var(--body-background); /* #1a2035; */
+    color: var(--footer-text-color); /* #666; */
+    font-size: 0.9em;
+    margin-top: 10px;
+    border-top: 0.5px solid solid var(--border-color); /* #333; */
+
+    // Ensure the footer's wrapper aligns its content properly
+    .wrapper {
+        max-width: 75%; /* Ensure it matches your main content wrapper's width */
+        padding: 10px;   /* Match .page-content .wrapper's padding */
+        margin: 0 auto;  /* Center the footer wrapper, just like the main content wrapper */
+    }
+
+    // Align the column wrapper itself to the left
+    .footer-col-wrapper {
+        display: flex;
+        justify-content: flex-start; /* This still aligns the columns themselves to the left within the wrapper */
+        align-items: flex-start;
+        flex-wrap: wrap;
+    }
+
+    // Ensure individual columns and their content are left-aligned
+    .footer-col {
+        text-align: left; /* Ensure all individual footer columns align their content left */
+    }
+    .footer-col-2 {
+        text-align: left;
+    }
+    .social-media-list {
+        margin-left: 0;
+        padding-left: 0;
+        list-style: none;
+    }
+}
+
+.site-footer {
+    padding: 10px 0; /* This will explicitly set the top/bottom padding to 10px and left/right to 0px */
+                     /* If you want 10px on all sides, use: padding: 10px; */
+}
+
+/* --- Code Blocks  --- */
+pre {
+    background-color: var(--code-bg);  /* #131728; Darker background for code */
+    color: var(--code-text);   /* #b0c4de; Light blueish/grey for code text */
+    padding: 15px;
+    border-radius: 5px;
+    overflow-x: auto; /* For long lines of code */
+    font-family: 'Fira Code', 'Space Mono', monospace; /* You might need to import these fonts too */
+    font-size: 0.9em;
+    line-height: 1.4;
+    border: 1px solid var(--code-border);
+}
+
+code {
+    font-family: 'Fira Code', 'Space Mono', monospace;
+    background-color: var(--inline-code-bg); /* #2a304e; Slightly lighter for inline code */
+    padding: 0.2em 0.4em;
+    border-radius: 3px;
+    color: var(--code-text);  /* #b0c4de; */
+}
+.page-content h2 {
+    margin-bottom: 40px; 
+}
+
+/* --- Consolidated Media Query for Mobile Responsiveness --- */
+@media screen and (max-width: 600px) { 
+    .site-header { // Targets the class on the <header> element
+        position: relative !important;
+        background-color: var(--body-background) !important; // Match current theme background
+        z-index: 1000 !important; // Keep header on top of content below, but below open menu
+        min-height: 56px !important;
+        height: 56px !important; // Fixed height for header
+        flex-direction: column !important;
+        align-items: flex-start !important;
+    }
+
+    // Adjustments for the header's overall layout on mobile
+    .site-header .wrapper {
+        flex-direction: column !important; /* Stack header items vertically */
+        align-items: flex-start !important; /* Align header items to the left */
+        width: 100% !important;
+    }
+
+    .site-header .page-link {
+        padding: 10px 0 !important; // Add vertical padding for stacked links
+        margin-right: 31.875px !important;
+    }
+
+    // Styling for the navigation container (the <nav> element) on mobile
+    .site-header .site-nav {
+        position: absolute !important; // <--- CRUCIAL CHANGE: Must be absolute to allow overlay behavior
+        top: 56px !important; // Start below the header when collapsed
+        left: 0 !important;
+        width: 100% !important;
+        z-index: 990 !important; // Initially below header and icon
+        // Appearance when collapsed
+        background: none !important; // No background when closed (will be covered by header anyway)
+        border: none !important; // No border
+        // Collapse mechanism and overflow for icon visibility
+        overflow: visible; // Allows the absolute .menu-icon child to break out and be seen
+        // Layout of items *within* the nav (when they eventually appear)
+        flex-direction: column !important; /* Stack navigation items vertically */
+        justify-content: center !important; /* Center navigation links horizontally when stacked */
+        // margin-left: 0;
+        // Smooth transition
+        transition: opacity 0.3s ease-out, visibility 0.3s ease-out, max-height 0.3s ease-out;
+        background: none !important; /* Ensure the main nav container itself has no background */
+        border: none !important; /* Remove any border around the nav container */
+        position: static !important; /* NEW: Ensure the navigation container is not absolutely positioned, allowing it to push content down */
+    }
+
+    // Styling for individual page links within the header on mobile
+    .site-header .page-link {
+        padding: 10px 0 !important; /* Add vertical padding for stacked links */
+    }
+
+    /* Hide the actual checkbox input for the mobile menu */
+    #nav-trigger {
+        display: none !important;
+    }
+
+    .site-nav label[for="nav-trigger"], // Target the label containing the icon
+    .site-nav .menu-icon { // Target the icon span itself
+        background-color: var(--body-background) !important; // Ensure its background matches theme
+        border: none !important; // Remove any border
+        display: block !important; // Make sure it's display block to apply width/height
+        position: absolute !important; // Position relative to .site-header
+        top: 20.5px !important; // Position from top
+        right: 15px !important; // Position from right
+        padding: 0 !important; // Explicitly remove any padding on these elements
+        margin: 0 !important; // Explicitly remove any margin on these elements
+        line-height: 1 !important; // Reset line-height to prevent extra vertical space
+        // top: 1.5rem !important; // Position from top
+        // right: 1.5rem !important; // Position from right
+        cursor: pointer !important; // Indicate clickable
+        z-index: 1010 !important; // Ensure icon is always on top (higher than header and menu)
+        // padding: none !important;
+        visibility: visible !important; // Force visibility
+        opacity: 1 !important; // Force full opacity
+        width: 18px !important; // Ensure dimensions
+        height: 15px !important; // Ensure dimensions
+        box-sizing: content-box !important; // Standard box model for icon
+        color: var(--text-color) !important; // Icon color from theme
+    }
+
+    /* MODIFIED RULE: Ensure the hamburger menu icon's container explicitly follows the theme AND removes its border */
+    .site-nav .menu-icon {
+        background-color: var(--body-background) !important; /* Make sure its background matches theme */
+        border: none !important; /* Remove any border around the hamburger icon */
+        display: block;
+        position: absolute;
+        top: 1.5rem;
+        right: 1.5rem;
+        cursor: pointer;
+    }
+
+    // Styling for the actual list of navigation links (.trigger - the <ul>)
+    // This targets the default (closed) state of the mobile menu
+    .site-nav .trigger {
+        background: none !important; /* IMPORTANT: Force no background for the list of links. This is the key fix. */
+        border: none !important; /* Remove any border around the collapsible menu list */
+        flex-direction: column !important; /* Stack links vertically */
+        align-items: flex-start !important; /* Align stacked links to the left (your preference) */
+        gap: 5px !important; /* Smaller gap between stacked links */
+        align-items: right;
+        // Essential for physically hiding the menu content when closed
+        max-height: 0;
+        overflow: hidden;
+        transition: max-height 0.3s ease-out; /* Smooth hide/show animation */
+    }
+
+    // Styling for when the mobile menu is OPEN (when the hamburger checkbox is checked)
+    #nav-trigger:checked ~ .trigger {
+        background-color: var(--body-background) !important; /* IMPORTANT: Ensure background is solid and follows theme */
+        // max-height: 250px; /* IMPORTANT: Adjust this value to be taller than your entire list of links */
+        width: 100vw;
+        height: 100vh !important;
+        z-index: 1001 !important; // Ensure it's on top of everything, including the header (header is 1000)
+        overflow: auto !important; // Allow scrolling if menu content is very long
+        max-height: 100vh !important; // Keep for the smooth expansion transition
+        padding: 10px 0; /* Example: Add padding around the expanded menu content */
+        // align-items: right;
+
+        // Centering options horizontally and vertically within the expanded menu
+        justify-content: center !important; /* Vertically center the links within the menu's height */
+        align-items: center !important;   /* Horizontally center the links (since flex-direction is column) */
+    }
+    .page-content .wrapper {
+        max-width: 83% !important;
+        margin-left: 31.875 !important;
+    }
+    h1, h2, h3, h4, h5, h6 {
+        line-height: 1.2 !important; /* Adjust this value as needed. Headings often have tighter line-height. */
+    }
+    // Decrease line height for body text and paragraphs
+    body {
+        line-height: 1.5 !important; /* Adjust this value as needed. 1.5 is a common tighter value for body text. */
+    }
+    p {
+        line-height: 1.5 !important; /* Explicitly target paragraphs too, if they are not inheriting from body */
+    }
+}
